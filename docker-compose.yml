@@ -1,0 +1,68 @@
+version: "3.5"
+
+services:
+  auth:
+    image: auth:latest
+    ports:
+      - 5000:5000
+    deploy:
+      mode: replicated
+      replicas: 2
+      update_config:
+        parallelism: 1
+        order: start-first
+        failure_action: rollback
+      restart_policy:
+        condition: on-failure
+  store:
+    image: store:latest
+    ports:
+      - 5001:5000
+    deploy:
+      mode: replicated
+      replicas: 2
+      update_config:
+        parallelism: 1
+        order: start-first
+        failure_action: rollback
+      restart_policy:
+        condition: on-failure
+  payment:
+    image: payment:latest
+    ports:
+      - 5002:5000
+    deploy:
+      mode: replicated
+      replicas: 2
+      update_config:
+        parallelism: 1
+        order: start-first
+        failure_action: rollback
+      restart_policy:
+        condition: on-failure
+  web:
+    image: web:latest
+    ports:
+      - 8080:80
+    deploy:
+      mode: replicated
+      replicas: 2
+      update_config:
+        parallelism: 1
+        order: start-first
+        failure_action: rollback
+      restart_policy:
+        condition: on-failure
+  back_office:
+    image: back_office:latest
+    ports:
+      - 8081:80
+    deploy:
+      mode: replicated
+      replicas: 2
+      update_config:
+        parallelism: 1
+        order: start-first
+        failure_action: rollback
+      restart_policy:
+        condition: on-failure
