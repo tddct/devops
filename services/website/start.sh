@@ -1,1 +1,2 @@
-docker stack deploy node --compose-file docker-compose.yml --with-registry-auth
+docker build . -t webapp
+docker run -p 8888:80 webapp                           
