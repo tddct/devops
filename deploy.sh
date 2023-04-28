@@ -17,19 +17,22 @@ elif [ $ARGS == "all" ]; then
             git pull
             docker build -t thydaduong/$serviceName:latest .
             docker push thydaduong/$serviceName:latest
-            echo "=============================="
         fi
 
     done
 else
     for ARG in $ARGS
     do 
-        # pwd
-        cd "${workingDir}/services/${ARG}"
-        git pull
-        docker build -t thydaduong/$ARG:latest .
-        docker push thydaduong/$ARG:latest
+        if test -f "${workingDir}/services/${ARG}/Dockerfile"; then
+            echo "Running service: ${ARG}"
+            cd "${workingDir}/services/${ARG}"
+            git pull
+            docker build -t thydaduong/$ARG:latest .
+            docker push thydaduong/$ARG:latest
+        else
+            echo "Service ${ARG} not found."
+        fi
     done
 fi
 
-./start.sh
+# ./start.sh
