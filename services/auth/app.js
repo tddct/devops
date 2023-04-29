@@ -5,7 +5,7 @@ const port = 5050;
 app.get("/", (req, res) => {
   res.send({
     name: "auth service",
-    version: "0.0.1",
+    version: "0.0.2",
   });
 });
 

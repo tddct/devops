@@ -34,5 +34,5 @@ else
         fi
     done
 fi
-
-# ./start.sh
+# cd "${workingDir}"
+./start.sh
