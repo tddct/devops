@@ -4,7 +4,7 @@ services:
   auth:
     image: auth:latest
     ports:
-      - 5000:5000
+      - 5050:5000
     deploy:
       mode: replicated
       replicas: 2
@@ -17,7 +17,7 @@ services:
   store:
     image: store:latest
     ports:
-      - 5001:5000
+      - 5051:5000
     deploy:
       mode: replicated
       replicas: 2
@@ -30,7 +30,7 @@ services:
   payment:
     image: payment:latest
     ports:
-      - 5002:5000
+      - 5052:5000
     deploy:
       mode: replicated
       replicas: 2
@@ -40,10 +40,10 @@ services:
         failure_action: rollback
       restart_policy:
         condition: on-failure
-  web:
+  webapp:
     image: web:latest
     ports:
-      - 8080:80
+      - 8888:80
     deploy:
       mode: replicated
       replicas: 2
@@ -53,10 +53,10 @@ services:
         failure_action: rollback
       restart_policy:
         condition: on-failure
-  back_office:
+  web_backoffice:
     image: back_office:latest
     ports:
-      - 8081:80
+      - 9999:80
     deploy:
       mode: replicated
       replicas: 2
